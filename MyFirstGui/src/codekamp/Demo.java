@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
  * Created by cerebro on 12/06/17.
  */
 public class Demo implements ActionListener {
+
+    public static JTextField t1 = new JTextField();
+    public static JTextField t2 = new JTextField();
+
     public static void main(String[] args) {
 
         JFrame f1 = new JFrame();
@@ -17,11 +21,11 @@ public class Demo implements ActionListener {
         f1.setTitle("CodeKamp window");
         f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JTextField t1 = new JTextField();
-        t1.setText("enter username");
+        Demo.t1 = new JTextField();
+        Demo.t1.setText("enter username");
 
-        JTextField t2 = new JTextField();
-        t2.setText("enter password");
+        Demo.t2 = new JTextField();
+        Demo.t2.setText("enter password");
 
         JButton b1 = new JButton();
         b1.setText("Login");
@@ -39,8 +43,8 @@ public class Demo implements ActionListener {
         f1.add(panel);
 
 
-        panel.add(t1);
-        panel.add(t2);
+        panel.add(Demo.t1);
+        panel.add(Demo.t2);
         panel.add(b1);
         panel.add(l1);
 
@@ -57,5 +61,11 @@ public class Demo implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         System.out.println("login button clicked");
+
+        String username = Demo.t1.getText();
+        String password = Demo.t2.getText();
+
+        System.out.println(username);
+        System.out.println(password);
     }
 }
