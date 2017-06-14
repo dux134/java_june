@@ -13,8 +13,6 @@ public class Demo implements ActionListener {
     public JButton b1;
     public JLabel l1;
 
-    public Demo[] children = new Demo[30];
-
     public static void main(String[] args) {
 
         Demo.createWindow();

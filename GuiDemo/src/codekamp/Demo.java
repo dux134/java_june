@@ -10,9 +10,9 @@ import java.awt.event.ActionListener;
  */
 public class Demo implements ActionListener {
 
-    private static JButton changeColorButton = new JButton();
-    private static JButton newWindowButton = new JButton();
-    private static JLabel label1 = new JLabel();
+    private JButton changeColorButton;
+    private JButton newWindowButton;
+    private JLabel label1;
 
     public static void main(String[] args) {
         Demo.createWindow();
@@ -20,10 +20,11 @@ public class Demo implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       if(e.getSource() == Demo.changeColorButton) {
-           Demo.label1.setForeground(Color.green);
-       } else {
+       if(e.getSource() == this.newWindowButton) {
            Demo.createWindow();
+       } else {
+           this.label1.setForeground(Color.green);
+
        }
     }
 
@@ -34,19 +35,23 @@ public class Demo implements ActionListener {
         JPanel p1 = new JPanel();
         frame.add(p1);
 
-        Demo.changeColorButton.setText("Change Color");
-        Demo.newWindowButton.setText("Create new window");
-        Demo.label1.setText("Hello world!");
-
         Demo d1 = new Demo();
 
-        Demo.changeColorButton.addActionListener(d1);
-        Demo.newWindowButton.addActionListener(d1);
+        d1.changeColorButton = new JButton();
+        d1.changeColorButton.setText("Change Color");
 
+        d1.newWindowButton = new JButton();
+        d1.newWindowButton.setText("Create new window");
 
-        p1.add(Demo.label1);
-        p1.add(Demo.changeColorButton);
-        p1.add(Demo.newWindowButton);
+        d1.label1 = new JLabel();
+        d1.label1.setText("Hello world!");
+
+        d1.changeColorButton.addActionListener(d1);
+        d1.newWindowButton.addActionListener(d1);
+
+        p1.add(d1.label1);
+        p1.add(d1.changeColorButton);
+        p1.add(d1.newWindowButton);
 
         frame.setVisible(true);
     }
