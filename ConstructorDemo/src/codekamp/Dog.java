@@ -5,5 +5,4 @@ package codekamp;
  */
 public class Dog {
 
-
 }

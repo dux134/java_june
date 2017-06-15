@@ -6,10 +6,10 @@ package codekamp;
 public class Animal {
 
     public Animal(String a) {
-        System.out.println(a);
+        System.out.println("String vala Animal constructor");
     }
 
-    public Animal(){
-        System.out.println(",fadhf");
+    public Animal(int a, int b) {
+        System.out.println("Two ints vala Animal constructor");
     }
 }
