@@ -39,6 +39,10 @@ public class CodeKampJFrame extends JFrame implements ActionListener {
         this.add(p);
     }
 
+    public CodeKampJFrame() {
+        this("My Awesome Window");
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.changeColorButton) {

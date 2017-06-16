@@ -14,13 +14,11 @@ public class Demo {
     // can be inherited.
     // 6. Even paramterless constructor gets inherited
     // when child class has no constructor of it's own
+    // 7. First line in every constructor should be a call to parent
+    // class constructor, directly or indirectly.
 
     public static void main(String[] args) {
 
-        Cat c1 = new Cat(); // searching for a parameterless constructor
-
-
-
-
+        Cat c1 = new Cat("venus"); // searching for a parameterless constructor
     }
 }
