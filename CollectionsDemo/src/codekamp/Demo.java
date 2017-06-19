@@ -1,7 +1,7 @@
 package codekamp;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by cerebro on 16/06/17.
@@ -9,44 +9,34 @@ import java.util.LinkedList;
 public class Demo {
 
     public static void main(String[] args) {
+        List<Student> students = Student.getAll();
 
+//        for(int i = 0; i < students.size(); i++) {
+//            System.out.println(students.get(i).name);
+//            System.out.println(students.get(i).age);
+//            System.out.println("----------------");
+//        }
 
+        for (Student s:students) {
+            System.out.println(s.name);
+            System.out.println(s.age);
+            System.out.println("----------------");
+        }
 
-        LinkedList<String> s1 = new LinkedList<>();
+        Student s1 = new Student("Rakesh", 18);
+        Student s2 = new Student("Mahesh", 21);
 
-        s1.add("Suresh");
-        s1.add("Ramesh");
-        s1.add("Dharmesh");
+        HashMap<String, Student> studentMap = new HashMap<>();
 
-        System.out.println(s1);
+        studentMap.put("class monitor", s1);
+        studentMap.put("coordinator", s2);
 
-        s1.remove(1);
+        HashMap<String, Integer> populations = new HashMap<>();
 
-        System.out.println(s1);
+        populations.put("India", 1300000000);
+        populations.put("India", 1500000000);
+        populations.put("USA", 200000000);
 
-        s1.add(1, "Jignesh");
-
-        System.out.println(s1);
-
-        s1.add(1, "Chandresh");
-
-        System.out.println(s1);
-
-        System.out.println(s1.get(3));
-
-        System.out.println(s1.size());
-
-        System.out.println(s1.contains("Jignesh"));
-
-
-        ArrayList<String> s2 = new ArrayList<>();
-
-        s2.add("Aman");
-        s2.add("Dhaman");
-        s2.add("Chaman");
-
-        s1.addAll(s2);
-
-        System.out.println(s1);
+        System.out.println(populations.get("India"));
     }
 }
