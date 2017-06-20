@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 /**
  * Created by cerebro on 16/06/17.
@@ -14,7 +15,7 @@ public class CodeKampFrame extends JFrame implements ActionListener {
     private JButton newWindowButton;
     private JLabel helloWorldLabel;
 
-    private CodeKampFrame[] childWindows;
+    private LinkedList<CodeKampFrame> childWindows;
 
     public CodeKampFrame() {
         super();
@@ -22,7 +23,7 @@ public class CodeKampFrame extends JFrame implements ActionListener {
         this.setSize(400, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.childWindows = new CodeKampFrame[30];
+        this.childWindows = new LinkedList<>();
 
         this.changeColorButton = new JButton("Change Color");
         this.newWindowButton = new JButton("New Window");
@@ -46,22 +47,13 @@ public class CodeKampFrame extends JFrame implements ActionListener {
         if (e.getSource() == this.changeColorButton) {
             this.helloWorldLabel.setForeground(Color.green);
 
-            for (int i = 0; i < 30; i++) {
-                if(this.childWindows[i] == null) {
-                    break;
-                }
-
-                this.childWindows[i].helloWorldLabel.setForeground(Color.green);
+            for(CodeKampFrame child:this.childWindows) {
+                child.helloWorldLabel.setForeground(Color.green);
             }
         } else {
             CodeKampFrame frame = new CodeKampFrame();
 
-            for (int i = 0; i < 30; i++) {
-                if(this.childWindows[i] == null) {
-                    this.childWindows[i] = frame;
-                    break;
-                }
-            }
+            this.childWindows.add(frame);
         }
     }
 }
