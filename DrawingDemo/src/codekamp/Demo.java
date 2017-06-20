@@ -42,6 +42,8 @@ public class Demo implements KeyListener {
         int x = 0;
         int y = 0;
 
+
+
         while (true) {
 
             try {
