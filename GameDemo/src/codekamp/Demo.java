@@ -35,6 +35,7 @@ public class Demo implements KeyListener {
         frame.setVisible(true);
 
 
+
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -52,12 +53,12 @@ public class Demo implements KeyListener {
         URL playerImageUrl4 = Demo.class.getResource("resources/run_anim4.png");
         URL playerImageUrl5 = Demo.class.getResource("resources/run_anim5.png");
 
-        Image grassImage = null;
-        Image playerImage1 = null;
-        Image playerImage2 = null;
-        Image playerImage3 = null;
-        Image playerImage4 = null;
-        Image playerImage5 = null;
+        Image grassImage;
+        Image playerImage1;
+        Image playerImage2;
+        Image playerImage3;
+        Image playerImage4;
+        Image playerImage5;
 
         try {
             grassImage = ImageIO.read(grassImageUrl);
@@ -116,7 +117,11 @@ public class Demo implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        Demo.class.isAssignableFrom(JPanel.class);
 
+        Demo d1 = new Demo();
+        JPanel p = new JPanel();
+        Demo.class.isInstance(p);
     }
 
     @Override
