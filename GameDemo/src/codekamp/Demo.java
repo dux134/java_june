@@ -5,13 +5,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 /**
  * Created by cerebro on 19/06/17.
  */
 public class Demo implements KeyListener {
+
+    private static int playerYCord = 315;
+    private static int playerYVel = 0;
+    private static int playerYAcc = 0;
 
 
     public static void main(String[] args) {
@@ -52,13 +58,16 @@ public class Demo implements KeyListener {
         URL playerImageUrl3 = Demo.class.getResource("resources/run_anim3.png");
         URL playerImageUrl4 = Demo.class.getResource("resources/run_anim4.png");
         URL playerImageUrl5 = Demo.class.getResource("resources/run_anim5.png");
+        URL playerImageImageUrl = Demo.class.getResource("resources/jump.png");
 
-        Image grassImage;
-        Image playerImage1;
-        Image playerImage2;
-        Image playerImage3;
-        Image playerImage4;
-        Image playerImage5;
+        Image grassImage = null;
+        Image playerImage1 = null;
+        Image playerImage2 = null;
+        Image playerImage3 = null;
+        Image playerImage4 = null;
+        Image playerImage5 = null;
+        Image playerJumpImage = null;
+        Image currentPlayerImage = null;
 
         try {
             grassImage = ImageIO.read(grassImageUrl);
@@ -67,8 +76,9 @@ public class Demo implements KeyListener {
             playerImage3 = ImageIO.read(playerImageUrl3);
             playerImage4 = ImageIO.read(playerImageUrl4);
             playerImage5 = ImageIO.read(playerImageUrl5);
+            playerJumpImage = ImageIO.read(playerImageImageUrl);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("unable to load images");
         }
 
         Image[] playerImages = {
@@ -84,6 +94,8 @@ public class Demo implements KeyListener {
 
         int currentIndex = 0;
 
+//        Random r1 = new Random();
+
         while (true) {
 
             try {
@@ -96,13 +108,31 @@ public class Demo implements KeyListener {
 
             currentIndex = currentIndex % 8;
 
+            currentPlayerImage = playerImages[currentIndex];
+
+            Demo.playerYVel += Demo.playerYAcc;
+            Demo.playerYCord += Demo.playerYVel;
+
+            if(Demo.playerYCord >= 315) {
+                Demo.playerYCord = 315;
+                Demo.playerYAcc = 0;
+                Demo.playerYVel = 0;
+            }
+
+
+//            int randomInt  = r1.nextInt(2);
+
+            if(Demo.playerYCord < 315) {
+                currentPlayerImage = playerJumpImage;
+            }
+
             Graphics g = p.getGraphics();
             g.clearRect(0, 0, 800, 450);
 
             g.setColor(skyBlue);
             g.fillRect(0,0,800,450);
             g.drawImage(grassImage, 0, 405, null);
-            g.drawImage(playerImages[currentIndex], 350, 315, null);
+            g.drawImage(currentPlayerImage, 350, Demo.playerYCord, null);
 
 
             g.dispose();
@@ -117,11 +147,10 @@ public class Demo implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        Demo.class.isAssignableFrom(JPanel.class);
-
-        Demo d1 = new Demo();
-        JPanel p = new JPanel();
-        Demo.class.isInstance(p);
+        if(e.getKeyCode() == KeyEvent.VK_SPACE && Demo.playerYCord == 315) {
+            Demo.playerYVel = -20;
+            Demo.playerYAcc = 1;
+        }
     }
 
     @Override

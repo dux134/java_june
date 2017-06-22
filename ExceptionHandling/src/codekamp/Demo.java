@@ -11,54 +11,28 @@ public class Demo {
     public static void main(String[] args) {
 
         try {
-            Demo.sendSms("+919988776655", "Your OTP is 0011");
-        } catch (OutOfReachException xyz) {
-            System.out.println("Please use your debit card number and pin");
-        } catch (BalanceKhatamException e) {
-            System.out.println("Use IVRS");
-            System.out.println("Inform Executives about the situation");
-        }
+            Demo.sendSms("", "");
 
-
-        try {
-            Demo.sendSms("+9900110011", "We have credited 1000000000000 to your account");
         } catch (OutOfReachException e) {
-            // Do anything
+
         } catch (BalanceKhatamException e) {
-            System.out.println("Inform Executives about the situation");
-        }
 
-        try {
-            Demo.sendSms("+91999888", "Your OTP is 0011");
-        } catch (OutOfReachException e) {
-            System.out.println("Your number is out of reach. Please try again.");
-        } catch (BalanceKhatamException e) {
-            
-        }
+        } finally {
 
-        try {
-            Demo.saveToDatabase();
-        } catch (DataInconsistantException a) {
-            System.out.println(a.message);
-        } catch (EmailUniqueException b) {
         }
-
 
         System.out.println("Hello world!");
-
-
-
     }
 
 
     public static void sendSms(String number, String message) throws OutOfReachException, BalanceKhatamException {
 
 
-        if(balanceKhatam) {
+        if (balanceKhatam) {
             throw new BalanceKhatamException();
         }
 
-        if(outOfReach) {
+        if (outOfReach) {
             throw new OutOfReachException();
         }
 
@@ -67,11 +41,29 @@ public class Demo {
 
     }
 
-    public static void saveToDatabase() throws DataInconsistantException, EmailUniqueException {
+    public static void tranferMoney(int fromAccount, int toAccount, int amount) throws OutOfReachException {
 
-        DataInconsistantException e1 = new DataInconsistantException("Name should be String");
-        DataInconsistantException e2 = new DataInconsistantException("Age should be integer");
+        //Fetch mobile numer from database
+        // Generate OTP
 
-        throw e1;
+        try {
+            Demo.sendSms("9988776655", "Your OTP is 001133");
+        } catch (BalanceKhatamException e) {
+            System.out.println("use IVRS");
+        }
+
+
+        System.out.println("Money transfered succesfully");
+        //code to transfer money
+    }
+
+    public static void sendDebitCreditInfo(int accountNum, int amout) {
+        //Fetch mobile numer from database
+
+        try {
+            Demo.sendSms("9933887766", "Rs 12000 credited to your account");
+        } catch (Exception e) {
+            System.out.println("send credit/debit email");
+        }
     }
 }
