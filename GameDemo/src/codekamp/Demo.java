@@ -195,7 +195,7 @@ public class Demo implements KeyListener {
             playerRect.setBounds(playerXCord, Demo.playerYCord, 72, 90);
             block1Rect.setLocation(block1X, block1Y);
             block2Rect.setLocation(block2X, block2Y);
-            
+
             if(Demo.ducked > 0) {
                 Demo.ducked--;
                 currentPlayerImage = playerDuckImage;

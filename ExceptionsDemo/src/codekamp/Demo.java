@@ -19,7 +19,7 @@ public class Demo {
             System.out.println("Use IVRS");
             System.out.println("Email to executives that we are out of balance");
         } catch (Exception e) {
-            
+
         }
 
 
@@ -30,18 +30,34 @@ public class Demo {
         }
 
         System.out.println("Welcome to CodeKamp");
-    }
 
-    public static void sendSms(String number, String msg) throws Exception {
-
-        if(Demo.balanceNil) {
-           throw new BalanceKhatam();
+        try {
+            Demo.transferMoney(365499, 23476, 1000000);
+        } catch (OutOfReach outOfReach) {
+            System.out.println("Unable to send money");
+        } catch (BalanceKhatam balanceKhatam) {
+            balanceKhatam.printStackTrace();
         }
 
-        if(Demo.notInReach) {
+    }
+
+    public static void sendSms(String number, String msg) throws OutOfReach, BalanceKhatam {
+
+        if (Demo.balanceNil) {
+            throw new BalanceKhatam();
+        }
+
+        if (Demo.notInReach) {
             throw new OutOfReach();
         }
 
         System.out.println("sms sent successfully to " + number);
+    }
+
+    public static void transferMoney(int fromAcc, int toAcc, int amount) throws OutOfReach, BalanceKhatam {
+        // find mobile number attached to fromAcc
+        // generate random OTP
+
+        Demo.sendSms("9900887766", "Your OTP is 001135");
     }
 }
