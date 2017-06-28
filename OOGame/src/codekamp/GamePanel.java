@@ -2,6 +2,7 @@ package codekamp;
 
 import codekamp.states.Stage1State;
 import codekamp.states.State;
+import codekamp.utils.Resources;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +38,7 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
 
         GamePanel.currentState = new Stage1State();
 
+        Resources.load();
         Thread t1 = new Thread(this);
         t1.start();
     }
