@@ -5,6 +5,8 @@ package codekamp;
  */
 public class Demo implements Runnable {
 
+    volatile public static int totalCount = 0;
+
     public static void main(String[] args) {
 
         Demo d1 = new Demo();
@@ -23,6 +25,10 @@ public class Demo implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+
+            System.out.println("Total count: " + Demo.totalCount + " ");
+            Demo.incrementTotalCount();
             System.out.println("Student number " + i + " on " + Thread.currentThread().getName());
         }
     }
@@ -35,8 +41,15 @@ public class Demo implements Runnable {
                 e.printStackTrace();
             }
 
+
+            System.out.println("Total count: " + Demo.totalCount + " ");
+            Demo.incrementTotalCount();
             System.out.println("Teacher number " + i + " on " + Thread.currentThread().getName());
         }
+    }
+
+    synchronized public static void incrementTotalCount() {
+        Demo.totalCount++;
     }
 
     @Override

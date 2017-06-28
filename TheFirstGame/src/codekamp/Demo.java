@@ -7,6 +7,8 @@ import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.URL;
 import java.util.LinkedList;
 
@@ -16,13 +18,14 @@ import java.util.Random;
 /**
  * Created by cerebro on 19/06/17.
  */
-public class Demo implements KeyListener {
+public class Demo implements KeyListener, MouseListener {
 
 
     public static int playerYCord = 315;
     public static int playerYVel = 0;
     public static int playerYAcc = 0;
     public static int ducked = 0;
+    public static boolean gamePaused = false;
 
     public static AudioClip jumpAudio;
 
@@ -52,6 +55,7 @@ public class Demo implements KeyListener {
 
         Demo d1 = new Demo();
         p.addKeyListener(d1);
+        p.addMouseListener(d1);
 
 
         Color skyBlue = new Color(126, 209, 255);
@@ -136,6 +140,10 @@ public class Demo implements KeyListener {
                 continue;
             }
 
+            if (Demo.gamePaused) {
+                continue;
+            }
+
             index++;
             index = index % 8;
 
@@ -144,19 +152,19 @@ public class Demo implements KeyListener {
 
             block1X -= 5;
 
-            if(block1X <= -20) {
+            if (block1X <= -20) {
                 block1X = 900;
 
                 block1Visible = true;
 
-                if(r1.nextInt(2) == 0) {
+                if (r1.nextInt(2) == 0) {
                     block1Y = 355;
                 } else {
                     block1Y = 275;
                 }
             }
 
-            if(Demo.playerYCord >= 315) {
+            if (Demo.playerYCord >= 315) {
                 Demo.playerYCord = 315;
                 Demo.playerYAcc = 0;
                 Demo.playerYVel = 0;
@@ -164,14 +172,14 @@ public class Demo implements KeyListener {
 
             playerCurrentImage = playerImages.get(index);
 
-            if(Demo.playerYCord < 315) {
+            if (Demo.playerYCord < 315) {
                 playerCurrentImage = jumpImage;
             }
 
 
             block1Rect.setLocation(block1X, block1Y);
 
-            if(Demo.ducked > 0) {
+            if (Demo.ducked > 0) {
                 playerCurrentImage = duckImage;
 
                 playerRect.setBounds(playerXCord, Demo.playerYCord + 20, 72, 70);
@@ -180,7 +188,7 @@ public class Demo implements KeyListener {
                 playerRect.setBounds(playerXCord, Demo.playerYCord, 72, 90);
             }
 
-            if(block1Visible && playerRect.intersects(block1Rect)) {
+            if (block1Visible && playerRect.intersects(block1Rect)) {
                 playerXCord -= 100;
                 block1Visible = false;
 
@@ -191,7 +199,7 @@ public class Demo implements KeyListener {
             Graphics g1 = p.getGraphics();
 
 
-            if(playerXCord < 0) {
+            if (playerXCord < 0) {
                 g1.setColor(Color.red);
                 g1.fillRect(0, 0, 800, 450);
                 g1.setColor(Color.green);
@@ -201,7 +209,7 @@ public class Demo implements KeyListener {
 
                 counter++;
 
-                if(counter > 20) {
+                if (counter > 20) {
                     counter = 0;
                     score++;
                 }
@@ -217,6 +225,8 @@ public class Demo implements KeyListener {
 
                 g1.setColor(Color.red);
                 g1.drawString("score is " + score, 10, 20);
+
+                g1.fillRect(50, 100, 50, 50);
             }
 
             g1.dispose();
@@ -230,7 +240,7 @@ public class Demo implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(Demo.playerYCord == 315 && e.getKeyCode() == KeyEvent.VK_SPACE) {
+        if (Demo.playerYCord == 315 && e.getKeyCode() == KeyEvent.VK_SPACE) {
             Demo.playerYVel = -20;
             Demo.playerYAcc = 1;
             Demo.jumpAudio.play();
@@ -241,5 +251,32 @@ public class Demo implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        if (e.getX() > 50 && e.getX() < 100 && e.getY() > 100 && e.getY() < 150) {
+            Demo.gamePaused = !Demo.gamePaused;
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
