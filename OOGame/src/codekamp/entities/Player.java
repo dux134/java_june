@@ -1,6 +1,5 @@
 package codekamp.entities;
 
-import codekamp.Game;
 import codekamp.utils.Resources;
 
 import java.awt.*;
@@ -18,12 +17,13 @@ public class Player extends Entity {
     private int ducked = 0;
 
     public Player() {
+
+        super(72, 90);
+
         this.x = 400;
         this.y = GROUND_Y;
 
         images = new ArrayList<>();
-
-        System.out.println(Resources.playerImage1);
 
         images.add(Resources.playerImage1);
         images.add(Resources.playerImage2);
@@ -56,14 +56,15 @@ public class Player extends Entity {
     public void jump() {
         if(this.y == GROUND_Y) {
             this.yVel = -20;
-            this.yAcc = 2;
+            this.yAcc = 1;
             Resources.jumpAudio.play();
+            this.ducked = 0;
         }
     }
 
     public void duck() {
         if(ducked == 0) {
-            ducked = 20;
+            ducked = 30;
         }
     }
 
@@ -75,6 +76,15 @@ public class Player extends Entity {
             return Resources.playerJumpImage;
         } else {
             return images.get(currentIndex);
+        }
+    }
+
+    @Override
+    public void setRectBounds() {
+        if(ducked > 0) {
+            this.rect.setBounds(this.x, this.y + 20, 72, 70);
+        } else {
+            super.setRectBounds();
         }
     }
 }

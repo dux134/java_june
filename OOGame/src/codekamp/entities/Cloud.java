@@ -11,6 +11,9 @@ import java.awt.*;
 public class Cloud extends Entity {
 
     public Cloud(int x) {
+
+        super(128, 71);
+
         this.x = x;
 
         this.setRandomY();

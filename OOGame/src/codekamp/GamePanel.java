@@ -34,11 +34,11 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
     public void addNotify() {
         super.addNotify();
 
+        Resources.load();
         this.requestFocus();
 
         GamePanel.currentState = new Stage1State();
 
-        Resources.load();
         Thread t1 = new Thread(this);
         t1.start();
     }
@@ -95,6 +95,7 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
             }
 
             GamePanel.currentState.update();
+
             Graphics ig = myCanvas.getGraphics();
             ig.clearRect(0, 0, Game.WIDTH, Game.HEIGHT);
             GamePanel.currentState.render(ig);

@@ -10,31 +10,13 @@ import java.awt.*;
  */
 public class Block extends Entity {
 
-    private static final int GROUND_Y = 355;
-    private static final int AIR_Y = 275;
+    public Block(int x, int y) {
 
-    public Block(int x) {
+        super(20, 50);
+
         this.x = x;
-        this.setRandomY();
+        this.y = y;
         this.xVel = -5;
-    }
-
-    @Override
-    public void update() {
-        super.update();
-
-        if (this.x < -20) {
-            this.x = 980;
-            this.setRandomY();
-        }
-    }
-
-    private void setRandomY() {
-        if (RandomGenerator.randomInt(2) == 0) {
-            this.y = GROUND_Y;
-        } else {
-            this.y = AIR_Y;
-        }
     }
 
     @Override

@@ -22,6 +22,7 @@ public class Resources {
     public static Image cloudImage;
 
     public static AudioClip jumpAudio;
+    public static AudioClip hitAudio;
 
 
     public static void load() {
@@ -37,6 +38,7 @@ public class Resources {
             Resources.playerJumpImage = ImageIO.read(Resources.class.getResource("../resources/jump.png"));
             Resources.playerDuckImage = ImageIO.read(Resources.class.getResource("../resources/duck.png"));
             Resources.jumpAudio = Applet.newAudioClip(Resources.class.getResource("../resources/onjump.wav"));
+            Resources.hitAudio = Applet.newAudioClip(Resources.class.getResource("../resources/hit.wav"));
         } catch (Exception e) {
             e.printStackTrace();
         }
