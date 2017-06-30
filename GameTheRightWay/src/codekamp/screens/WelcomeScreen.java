@@ -13,13 +13,12 @@ public class WelcomeScreen extends Screen {
 
     @Override
     public void render(Graphics g) {
-        super.render(g);
 
         g.setColor(Color.cyan);
         g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
         g.setColor(Color.red);
         g.setFont(new Font("Aerial", Font.BOLD, 24));
-        g.drawString("Welcome to Ballon Buster", 10, 50);
+        g.drawString("Welcome to Jumper", 10, 50);
         g.drawString("Press enter to play", 10, 150);
     }
 

@@ -21,6 +21,7 @@ public class Stage1State extends State {
     private static final int GRASS_HEIGHT = 45;
     private static final int GRASS_Y_CORD = Game.HEIGHT - GRASS_HEIGHT;
     private static final Color SKY_BLUE_COLOR = new Color(161, 204, 255);
+    private static final Font MY_FONT = new Font("Aerial", Font.BOLD, 24);
     private static final int GROUND_Y = 355;
     private static final int AIR_Y = 275;
     private Player player;
@@ -76,6 +77,11 @@ public class Stage1State extends State {
     public void render(Graphics a) {
         a.setColor(SKY_BLUE_COLOR);
         a.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+
+        a.setColor(Color.red);
+        a.setFont(MY_FONT);
+        a.drawString("CodeKamp", 10, 20);
+
         a.drawImage(Resources.grassImage, 0, GRASS_Y_CORD, null);
 
         for (Entity e : entities) {
