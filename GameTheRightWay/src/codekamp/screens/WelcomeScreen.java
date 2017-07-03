@@ -19,13 +19,11 @@ public class WelcomeScreen extends Screen {
         g.setColor(Color.red);
         g.setFont(new Font("Aerial", Font.BOLD, 24));
         g.drawString("Welcome to Jumper", 10, 50);
-        g.drawString("Press enter to play", 10, 150);
+        g.drawString("Press any key to play", 10, 150);
     }
 
     @Override
     public void onKeyPress(int keyCode) {
-        if(keyCode == KeyEvent.VK_ENTER) {
-            GamePanel.currentScreen = new Stage1Screen();
-        }
+        GamePanel.currentScreen = new Stage1Screen();
     }
 }

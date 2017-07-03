@@ -51,15 +51,14 @@ public class Stage1Screen extends Screen {
     public void update() {
         super.update();
 
-        for (Block b: blocks) {
-            if(b.x <= 0) {
-                b.xVel = 5;
-            } else if (b.x >= 800) {
-                b.xVel = -5;
+        for (Block b : blocks) {
+            if (b.x <= -20) {
+                b.x = BLOCK_START;
+                b.y = getRandomBlockY();
             }
         }
 
-        if(player.y >= PLAYER_GROUND_Y) {
+        if (player.y >= PLAYER_GROUND_Y) {
             player.y = PLAYER_GROUND_Y;
             player.inAir = false;
             player.yVel = 0;
@@ -68,7 +67,7 @@ public class Stage1Screen extends Screen {
     }
 
     private int getRandomBlockY() {
-        if(RandomGen.get(2) == 0) {
+        if (RandomGen.get(2) == 0) {
             return BLOCK_GROUND_Y;
         } else {
             return BLOCK_AIR_Y;
@@ -76,11 +75,8 @@ public class Stage1Screen extends Screen {
     }
 
 
-
     @Override
     public void render(Graphics g) {
-        super.render(g);
-
         g.setColor(SKY_BLUE_COLOR);
         g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 
@@ -91,11 +87,13 @@ public class Stage1Screen extends Screen {
 
     @Override
     public void onKeyPress(int keyCode) {
-        if(player.y == PLAYER_GROUND_Y && keyCode == KeyEvent.VK_SPACE) {
+        if (player.y == PLAYER_GROUND_Y && keyCode == KeyEvent.VK_SPACE) {
             player.yVel = -20;
             player.yAcc = 1;
             Resources.jumpAudio.play();
             player.inAir = true;
+        } else if(player.y == PLAYER_GROUND_Y && keyCode == KeyEvent.VK_DOWN) {
+            player.duck();
         }
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Player extends Entity {
 
-    public boolean ducked = false;
+    public int ducked = 0;
     public boolean inAir = false;
     public int currentIndex = 0;
     public List<Image> images;
@@ -39,16 +39,40 @@ public class Player extends Entity {
 
         currentIndex++;
         currentIndex %= 8;
+
+        if (ducked > 0) {
+            ducked--;
+        }
     }
 
     @Override
     public Image getImage() {
-        if(inAir) {
+        if (inAir) {
             return Resources.playerJumpImage;
-        } else if (ducked) {
+        } else if (ducked > 0) {
             return Resources.playerDuckImage;
         } else {
             return this.images.get(currentIndex);
+        }
+    }
+
+    @Override
+    public int getWidth() {
+        return 72;
+    }
+
+    @Override
+    public int getHeight() {
+        if (ducked > 0) {
+            return 70;
+        }
+
+        return 90;
+    }
+
+    public void duck() {
+        if (ducked == 0) {
+            ducked = 20;
         }
     }
 }

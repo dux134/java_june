@@ -1,5 +1,8 @@
 package codekamp;
 
+import codekamp.screens.WelcomeScreen;
+import codekamp.utils.Resources;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,6 +16,12 @@ public class Game {
 
 
     public static void main(String[] args) {
+
+
+        Resources.load();
+
+        GamePanel.currentScreen = new WelcomeScreen();
+
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

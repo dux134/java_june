@@ -20,4 +20,14 @@ public class Block extends Entity {
     public Image getImage() {
         return Resources.blockImage;
     }
+
+    @Override
+    public int getWidth() {
+        return 20;
+    }
+
+    @Override
+    public int getHeight() {
+        return 50;
+    }
 }

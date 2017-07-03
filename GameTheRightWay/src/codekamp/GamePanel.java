@@ -29,10 +29,7 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
     public void addNotify() {
         super.addNotify();
 
-        Resources.load();
-
-        currentScreen = new WelcomeScreen();
-
+        this.requestFocus();
         Thread t1 = new Thread(this);
         t1.start();
     }
