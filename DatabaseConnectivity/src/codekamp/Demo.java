@@ -2,9 +2,7 @@ package codekamp;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Created by cerebro on 30/06/17.
@@ -17,9 +15,6 @@ public class Demo {
 
     public static void main(String[] args) {
 
-
-        System.out.println("Our Main Function");
-
         try {
             Class.forName(JDBC_CLASS);
         } catch (ClassNotFoundException e) {
@@ -29,11 +24,25 @@ public class Demo {
 
         try {
             Connection c = DriverManager.getConnection(DATABASE_PATH);
+            Statement s = c.createStatement();
 
-            // https://www.w3schools.com/SQL/
+//            s.execute("INSERT INTO `students`(`name`,`email`,`age`) VALUES ('Ramesh','rameshsingh@gmail.com',55);");
+
+
+            ResultSet r = s.executeQuery("SELECT * FROM `students` WHERE `email` = 'ramesh@gmail.com'");
+
+            while (r.next()) {
+                System.out.println("id is " + r.getInt("id"));
+                System.out.println("email is " + r.getString("email"));
+                System.out.println("age is " + r.getInt("age"));
+                System.out.println("name is " + r.getString("name"));
+                System.out.println("-----------------------");
+            }
+
 
         } catch (SQLException e) {
-
+            System.out.println("Catch code running");
+            System.out.println(e.getMessage());
         }
     }
 }
