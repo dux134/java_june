@@ -14,6 +14,7 @@ abstract public class Entity {
     public int xAcc;
     public int yAcc;
     public Rectangle rect = new Rectangle();
+    public boolean visible = true;
 
     public void update() {
         x += xVel;
@@ -30,7 +31,7 @@ abstract public class Entity {
         this.updateRect();
         other.updateRect();
 
-        return this.rect.intersects(other.rect);
+        return this.visible && other.visible && this.rect.intersects(other.rect);
     }
 
     public void updateRect() {

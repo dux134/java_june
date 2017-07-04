@@ -1,6 +1,7 @@
 package codekamp.screens;
 
 import codekamp.Game;
+import codekamp.GamePanel;
 import codekamp.entities.Block;
 import codekamp.entities.Player;
 import codekamp.utils.RandomGen;
@@ -55,6 +56,13 @@ public class Stage1Screen extends Screen {
             if (b.x <= -20) {
                 b.x = BLOCK_START;
                 b.y = getRandomBlockY();
+                b.visible = true;
+            }
+
+            if(player.isCollidingWith(b)) {
+                player.x -= 50;
+                Resources.hitAudio.play();
+                b.visible = false;
             }
         }
 
@@ -63,6 +71,10 @@ public class Stage1Screen extends Screen {
             player.inAir = false;
             player.yVel = 0;
             player.yAcc = 0;
+        }
+
+        if(player.x < 0) {
+            GamePanel.currentScreen = new GameOverScreen();
         }
     }
 

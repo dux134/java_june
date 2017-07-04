@@ -75,4 +75,13 @@ public class Player extends Entity {
             ducked = 20;
         }
     }
+
+    @Override
+    public void updateRect() {
+        if (ducked > 0) {
+            this.rect.setBounds(this.x, this.y + 20, getWidth(), getHeight());
+        } else {
+            this.rect.setBounds(this.x, this.y, getWidth(), getHeight());
+        }
+    }
 }

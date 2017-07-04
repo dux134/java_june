@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by cerebro on 29/06/17.
@@ -79,6 +80,8 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
     @Override
     public void run() {
 
+        BufferedImage myImage = new BufferedImage(Game.WIDTH, Game.HEIGHT, BufferedImage.TYPE_INT_RGB);
+
         while (true) {
 
             try {
@@ -88,10 +91,12 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
 
             currentScreen.update();
 
+            Graphics ig = myImage.getGraphics();
+            currentScreen.render(ig);
+            ig.dispose();
+
             Graphics pg = this.getGraphics();
-
-            currentScreen.render(pg);
-
+            pg.drawImage(myImage, 0, 0, null);
             pg.dispose();
 
         }
