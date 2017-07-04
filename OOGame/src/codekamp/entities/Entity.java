@@ -16,7 +16,7 @@ abstract public class Entity {
     public int height;
     public boolean visible = true;
 
-    public Rectangle rect = new Rectangle();
+    protected Rectangle rect = new Rectangle();
 
     abstract public Image getImage();
 

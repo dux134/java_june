@@ -17,12 +17,14 @@ import java.awt.image.BufferedImage;
  */
 public class GamePanel extends JPanel implements KeyListener, MouseListener, Runnable {
 
-    public static State currentState;
+    protected static State currentState;
 
     public GamePanel() {
         super();
 
         Dimension d = new Dimension(Game.WIDTH, Game.HEIGHT);
+
+
         this.setPreferredSize(d);
 
         this.setFocusable(true);

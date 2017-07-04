@@ -28,6 +28,7 @@ public class Resources {
     public static void load() {
         try {
             Resources.grassImage = ImageIO.read(Resources.class.getResource("../resources/grass.png"));
+            Resources.grassImage = ImageIO.read(Resources.class.getResource("../resources/grass.png"));
             Resources.blockImage = ImageIO.read(Resources.class.getResource("../resources/block.png"));
             Resources.cloudImage = ImageIO.read(Resources.class.getResource("../resources/cloud1.png"));
             Resources.playerImage1 = ImageIO.read(Resources.class.getResource("../resources/run_anim1.png"));

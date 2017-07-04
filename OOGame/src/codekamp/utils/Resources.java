@@ -27,18 +27,18 @@ public class Resources {
 
     public static void load() {
         try {
-            Resources.grassImage = ImageIO.read(Resources.class.getResource("../resources/grass.png"));
-            Resources.blockImage = ImageIO.read(Resources.class.getResource("../resources/block.png"));
-            Resources.cloudImage = ImageIO.read(Resources.class.getResource("../resources/cloud1.png"));
-            Resources.playerImage1 = ImageIO.read(Resources.class.getResource("../resources/run_anim1.png"));
-            Resources.playerImage2 = ImageIO.read(Resources.class.getResource("../resources/run_anim2.png"));
-            Resources.playerImage3 = ImageIO.read(Resources.class.getResource("../resources/run_anim3.png"));
-            Resources.playerImage4 = ImageIO.read(Resources.class.getResource("../resources/run_anim4.png"));
-            Resources.playerImage5 = ImageIO.read(Resources.class.getResource("../resources/run_anim5.png"));
-            Resources.playerJumpImage = ImageIO.read(Resources.class.getResource("../resources/jump.png"));
-            Resources.playerDuckImage = ImageIO.read(Resources.class.getResource("../resources/duck.png"));
-            Resources.jumpAudio = Applet.newAudioClip(Resources.class.getResource("../resources/onjump.wav"));
-            Resources.hitAudio = Applet.newAudioClip(Resources.class.getResource("../resources/hit.wav"));
+            Resources.grassImage = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/grass.png"));
+            Resources.blockImage = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/block.png"));
+            Resources.cloudImage = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/cloud1.png"));
+            Resources.playerImage1 = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/run_anim1.png"));
+            Resources.playerImage2 = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/run_anim2.png"));
+            Resources.playerImage3 = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/run_anim3.png"));
+            Resources.playerImage4 = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/run_anim4.png"));
+            Resources.playerImage5 = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/run_anim5.png"));
+            Resources.playerJumpImage = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/jump.png"));
+            Resources.playerDuckImage = ImageIO.read(Resources.class.getClassLoader().getResource("codekamp/resources/duck.png"));
+            Resources.jumpAudio = Applet.newAudioClip(Resources.class.getClassLoader().getResource("codekamp/resources/onjump.wav"));
+            Resources.hitAudio = Applet.newAudioClip(Resources.class.getClassLoader().getResource("codekamp/resources/hit.wav"));
         } catch (Exception e) {
             e.printStackTrace();
         }
