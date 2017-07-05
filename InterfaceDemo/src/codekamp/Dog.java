@@ -3,20 +3,10 @@ package codekamp;
 /**
  * Created by cerebro on 12/06/17.
  */
-public class Dog implements Educated {
+public class Dog extends Animal {
 
-    @Override
-    public int add(int a, int b) {
-        return 0;
+    public void talk() {
+        System.out.println("Wuff Wuff");
     }
 
-    @Override
-    public int multiply(int a, int b) {
-        return 0;
-    }
-
-    @Override
-    public void read(String s) {
-
-    }
 }
